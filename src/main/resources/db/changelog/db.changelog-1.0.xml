@@ -1,0 +1,64 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <changeSet id="1.0.0" author="nocontrib">
+    <createTable tableName="account">
+      <column name="id" type="UUID" defaultValueComputed="uuid_generate_v1()">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="username" type="VARCHAR(255)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="password" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="VARCHAR(255)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="created" type="TIMESTAMP" defaultValue="NOW()"/>
+      <column name="status" type="VARCHAR(25)" defaultValue="ENABLED"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1.0.1" author="nocontrib">
+    <createTable tableName="role">
+      <column name="id" type="UUID" defaultValueComputed="uuid_generate_v1()">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(25)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="created" type="TIMESTAMP" defaultValue="NOW()"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1.0.2" author="nocontrib">
+    <createTable tableName="account_role">
+      <column name="account_id" type="UUID"/>
+      <column name="role_id" type="UUID"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1.0.3" author="nocontrib">
+    <addForeignKeyConstraint
+      constraintName="foreign_key_account_role_account"
+      baseTableName="account_role"
+      baseColumnNames="account_id"
+      referencedTableName="account"
+      referencedColumnNames="id"
+      onDelete="CASCADE"
+      onUpdate="RESTRICT"/>
+  </changeSet>
+  <changeSet id="1.0.4" author="nocontrib">
+    <addForeignKeyConstraint
+      constraintName="foreign_key_account_role_role"
+      baseTableName="account_role"
+      baseColumnNames="role_id"
+      referencedTableName="role"
+      referencedColumnNames="id"
+      onDelete="CASCADE"
+      onUpdate="RESTRICT"/>
+  </changeSet>
+</databaseChangeLog>
