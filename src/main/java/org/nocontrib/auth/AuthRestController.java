@@ -1,12 +1,10 @@
-package org.nocontrib.controller;
+package org.nocontrib.auth;
 
 import lombok.extern.slf4j.Slf4j;
-import org.nocontrib.dto.AccountDto;
-import org.nocontrib.dto.AuthRequestDto;
-import org.nocontrib.dto.AuthResponseDto;
-import org.nocontrib.entity.Account;
+import org.nocontrib.account.Account;
+import org.nocontrib.account.AccountDto;
+import org.nocontrib.account.AccountService;
 import org.nocontrib.security.JwtProvider;
-import org.nocontrib.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

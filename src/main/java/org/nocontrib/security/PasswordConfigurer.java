@@ -1,4 +1,4 @@
-package org.nocontrib.configurer;
+package org.nocontrib.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

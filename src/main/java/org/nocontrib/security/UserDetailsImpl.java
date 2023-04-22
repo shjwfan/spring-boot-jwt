@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 import lombok.Data;
-import org.nocontrib.entity.Status;
+import org.nocontrib.account.Status;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

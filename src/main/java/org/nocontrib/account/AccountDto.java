@@ -1,13 +1,12 @@
-package org.nocontrib.dto;
+package org.nocontrib.account;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.Data;
-import org.nocontrib.entity.Account;
-import org.nocontrib.entity.Role;
-import org.nocontrib.entity.Status;
+import org.nocontrib.role.RoleDto;
+import org.nocontrib.role.Role;
 
 @Data
 public class AccountDto {

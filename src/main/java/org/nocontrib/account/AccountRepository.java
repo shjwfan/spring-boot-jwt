@@ -1,8 +1,7 @@
-package org.nocontrib.repository;
+package org.nocontrib.account;
 
 import java.util.Optional;
 import java.util.UUID;
-import org.nocontrib.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

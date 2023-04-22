@@ -1,8 +1,7 @@
-package org.nocontrib.service;
+package org.nocontrib.role;
 
 import java.util.List;
 import java.util.UUID;
-import org.nocontrib.entity.Role;
 
 public interface RoleService {
 

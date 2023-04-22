@@ -1,4 +1,4 @@
-package org.nocontrib.entity;
+package org.nocontrib.account;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.nocontrib.role.Role;
 
 @Entity
 @Table(name = "account")

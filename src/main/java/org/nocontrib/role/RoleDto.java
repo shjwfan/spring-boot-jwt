@@ -1,9 +1,8 @@
-package org.nocontrib.dto;
+package org.nocontrib.role;
 
 import java.util.Date;
 import java.util.UUID;
 import lombok.Data;
-import org.nocontrib.entity.Role;
 
 @Data
 public class RoleDto {

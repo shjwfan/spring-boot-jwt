@@ -1,10 +1,9 @@
-package org.nocontrib.service;
+package org.nocontrib.role;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import org.nocontrib.entity.Role;
-import org.nocontrib.repository.RoleRepository;
+import org.nocontrib.web.NotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
   public Role findById(UUID id) {
     Role role = repository.findById(id).orElse(null);
     if (role == null) {
-      throw new ServiceException("Role is not defined");
+      throw new NotFoundException("Role is not defined");
     }
     return null;
   }
@@ -40,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
   public Role findByName(String name) {
     Role role = repository.findByName(name).orElse(null);
     if (role == null) {
-      throw new ServiceException("Role is not defined");
+      throw new NotFoundException("Role is not defined");
     }
     return role;
   }

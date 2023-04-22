@@ -1,9 +1,6 @@
-package org.nocontrib.controller;
+package org.nocontrib.account;
 
 import lombok.extern.slf4j.Slf4j;
-import org.nocontrib.dto.AccountDto;
-import org.nocontrib.entity.Account;
-import org.nocontrib.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestBody;

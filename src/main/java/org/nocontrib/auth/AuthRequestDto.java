@@ -1,4 +1,4 @@
-package org.nocontrib.dto;
+package org.nocontrib.auth;
 
 import lombok.Data;
 

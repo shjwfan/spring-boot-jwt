@@ -3,8 +3,8 @@ package org.nocontrib.security;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.nocontrib.entity.Account;
-import org.nocontrib.entity.Role;
+import org.nocontrib.account.Account;
+import org.nocontrib.role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

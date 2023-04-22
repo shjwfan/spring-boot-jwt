@@ -1,7 +1,5 @@
-package org.nocontrib.configurer;
+package org.nocontrib.security;
 
-import org.nocontrib.security.JwtConfigurer;
-import org.nocontrib.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

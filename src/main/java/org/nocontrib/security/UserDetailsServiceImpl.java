@@ -1,7 +1,7 @@
 package org.nocontrib.security;
 
-import org.nocontrib.entity.Account;
-import org.nocontrib.service.AccountService;
+import org.nocontrib.account.Account;
+import org.nocontrib.account.AccountService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

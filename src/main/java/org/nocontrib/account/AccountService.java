@@ -1,8 +1,7 @@
-package org.nocontrib.service;
+package org.nocontrib.account;
 
 import java.util.List;
 import java.util.UUID;
-import org.nocontrib.entity.Account;
 
 public interface AccountService {
 

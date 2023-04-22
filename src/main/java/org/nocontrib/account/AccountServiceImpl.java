@@ -1,11 +1,11 @@
-package org.nocontrib.service;
+package org.nocontrib.account;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import org.nocontrib.entity.Account;
-import org.nocontrib.entity.Role;
-import org.nocontrib.repository.AccountRepository;
+import org.nocontrib.role.Role;
+import org.nocontrib.role.RoleService;
+import org.nocontrib.web.NotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
   public Account findById(UUID id) {
     Account account = repository.findById(id).orElse(null);
     if (account == null) {
-      throw new ServiceException("Account is not defined");
+      throw new NotFoundException("Account is not defined");
     }
     return account;
   }
@@ -56,7 +56,7 @@ public class AccountServiceImpl implements AccountService {
   public Account findByUsername(String username) {
     Account account = repository.findByUsername(username).orElse(null);
     if (account == null) {
-      throw new ServiceException("Account is not defined");
+      throw new NotFoundException("Account is not defined");
     }
     return account;
   }
