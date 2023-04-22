@@ -27,8 +27,8 @@ public class Role {
 
   private Date created = new Date();
 
-  @ManyToMany(mappedBy = "roleList", fetch = FetchType.LAZY)
-  private List<Account> accountList;
+  @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+  private List<Account> accounts;
 
   @Override
   public String toString() {

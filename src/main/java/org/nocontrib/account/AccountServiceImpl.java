@@ -2,69 +2,46 @@ package org.nocontrib.account;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 import org.nocontrib.role.Role;
-import org.nocontrib.role.RoleService;
+import org.nocontrib.role.RoleRepository;
 import org.nocontrib.web.NotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+@RequiredArgsConstructor
 @Component
 public class AccountServiceImpl implements AccountService {
 
-  private final AccountRepository repository;
+  private final AccountRepository accountRepository;
   private final BCryptPasswordEncoder encoder;
-  private final RoleService roleService;
+  private final RoleRepository roleRepository;
 
-  public AccountServiceImpl(AccountRepository repository, BCryptPasswordEncoder encoder,
-      RoleService roleService) {
-    this.repository = repository;
-    this.encoder = encoder;
-    this.roleService = roleService;
-  }
-
-  @Override
-  public Account findById(UUID id) {
-    Account account = repository.findById(id).orElse(null);
-    if (account == null) {
-      throw new NotFoundException("Account is not defined");
-    }
-    return account;
-  }
-
-  @Override
-  public List<Account> findAll() {
-    return repository.findAll();
-  }
-
+  @Transactional
   @Override
   public Account save(Account account) {
-    Role role = roleService.findByName("ROLE_ACCOUNT");
-
-    List<Role> roleList = List.of(role);
-    account.setRoleList(roleList);
+    List<Role> roles = roleRepository.findAllByName("ROLE_ACCOUNT").toList();
+    account.setRoles(roles);
 
     String encoded = encoder.encode(account.getPassword());
     account.setPassword(encoded);
 
-    Account result = repository.save(account);
-    return result;
+    return accountRepository.save(account);
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public Account findByUsername(String username) {
-    Account account = repository.findByUsername(username).orElse(null);
-    if (account == null) {
-      throw new NotFoundException("Account is not defined");
-    }
-    return account;
+  public Account getByUsername(String username) {
+    return accountRepository.findByUsername(username)
+        .orElseThrow(() -> new NotFoundException(String.format("%s was not found", username)));
   }
 
   @Override
   @Transactional
   public void updateByUsername(String username, Account account) {
-    Account old = findByUsername(username);
+    Account old = getByUsername(username);
     if (old != null && account != null) {
       if (account.getUsername() != null && !old.getUsername().equals(account.getUsername())) {
         old.setUsername(account.getUsername());
@@ -91,6 +68,12 @@ public class AccountServiceImpl implements AccountService {
   @Override
   @Transactional
   public void deleteByUsername(String username) {
-    repository.deleteByUsername(username);
+    accountRepository.deleteByUsername(username);
+  }
+
+  @Transactional(readOnly = true)
+  @Override
+  public List<Role> getRolesByUsername(String username) {
+    return roleRepository.findByUsername(username);
   }
 }

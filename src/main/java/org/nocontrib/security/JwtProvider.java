@@ -30,7 +30,7 @@ public class JwtProvider {
 
   public String jwt(Account account) {
     String username = account.getUsername();
-    List<Role> roleList = account.getRoleList();
+    List<Role> roleList = account.getRoles();
     return jwt(username, roleList);
   }
 

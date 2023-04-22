@@ -49,7 +49,7 @@ public class AuthRestController {
       Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
       manager.authenticate(auth);
 
-      Account account = service.findByUsername(username);
+      Account account = service.getByUsername(username);
       log.info("Account " + request + " is sign in");
 
       AuthResponseDto response = AuthResponseDto.of(provider.jwt(account));

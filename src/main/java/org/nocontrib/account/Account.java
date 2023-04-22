@@ -38,9 +38,9 @@ public class Account {
   @Enumerated(EnumType.STRING)
   private Status status = Status.ENABLED;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "account_role",
       joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
       inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-  private List<Role> roleList;
+  private List<Role> roles;
 }
