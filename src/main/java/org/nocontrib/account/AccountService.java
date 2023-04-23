@@ -1,6 +1,7 @@
 package org.nocontrib.account;
 
 import java.util.List;
+import org.nocontrib.auth.CreateAccountRequestDto;
 import org.nocontrib.role.Role;
 
 public interface AccountService {
@@ -8,6 +9,8 @@ public interface AccountService {
   Account getByUsername(String username);
 
   Account save(Account account);
+
+  Account save(CreateAccountRequestDto dto);
 
   void updateByUsername(String username, Account account);
 

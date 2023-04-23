@@ -1,18 +1,9 @@
 package org.nocontrib.auth;
 
-import lombok.Data;
-
-@Data
-public class AuthRequestDto {
-
-  private String username;
-  private String password;
+public record AuthRequestDto(String username, String password) {
 
   public static AuthRequestDto of(String username, String password) {
-    AuthRequestDto dto = new AuthRequestDto();
-    dto.setUsername(username);
-    dto.setPassword(password);
-    return dto;
+    return new AuthRequestDto(username, password);
   }
 
   @Override

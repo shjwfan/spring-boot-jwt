@@ -2,8 +2,8 @@ package org.nocontrib.account;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
+import org.nocontrib.auth.CreateAccountRequestDto;
 import org.nocontrib.role.Role;
 import org.nocontrib.role.RoleRepository;
 import org.nocontrib.web.NotFoundException;
@@ -29,6 +29,19 @@ public class AccountServiceImpl implements AccountService {
     account.setPassword(encoded);
 
     return accountRepository.save(account);
+  }
+
+  @Transactional
+  @Override
+  public Account save(CreateAccountRequestDto dto) {
+    Account account = new Account();
+
+    account.setName(dto.username());
+    account.setName(dto.password());
+    account.setName(dto.name());
+    account.setName(dto.email());
+
+    return save(account);
   }
 
   @Transactional(readOnly = true)

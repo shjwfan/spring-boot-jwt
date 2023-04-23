@@ -32,10 +32,10 @@ public class AuthRestController {
   }
 
   @RequestMapping(value = "sign/up", method = RequestMethod.POST)
-  public ResponseEntity<AccountDto> signUp(@RequestBody Account account) {
-    AccountDto dto = AccountDto.of(service.save(account));
-    log.info("Account " + dto + " is sign up");
-    return ResponseEntity.ok(dto);
+  public ResponseEntity<AccountDto> signUp(@RequestBody CreateAccountRequestDto dto) {
+    Account account = service.save(dto);
+    log.info("Account " + account + " saved");
+    return ResponseEntity.ok(AccountDto.of(account));
   }
 
   @RequestMapping(value = "sign/in", method = RequestMethod.POST)
@@ -43,8 +43,8 @@ public class AuthRestController {
     try {
       log.info("Try auth: " + request.toString());
 
-      String username = request.getUsername();
-      String password = request.getPassword();
+      String username = request.username();
+      String password = request.password();
 
       Authentication auth = new UsernamePasswordAuthenticationToken(username, password);
       manager.authenticate(auth);

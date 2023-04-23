@@ -1,15 +1,8 @@
 package org.nocontrib.auth;
 
-import lombok.Data;
-
-@Data
-public class AuthResponseDto {
-
-  private String token;
+public record AuthResponseDto(String token) {
 
   public static AuthResponseDto of(String token) {
-    AuthResponseDto dto = new AuthResponseDto();
-    dto.setToken(token);
-    return dto;
+    return new AuthResponseDto(token);
   }
 }
