@@ -1,5 +1,6 @@
 package org.nocontrib.auth;
 
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.nocontrib.account.Account;
 import org.nocontrib.account.AccountDto;
@@ -32,14 +33,14 @@ public class AuthRestController {
   }
 
   @RequestMapping(value = "sign/up", method = RequestMethod.POST)
-  public ResponseEntity<AccountDto> signUp(@RequestBody CreateAccountRequestDto dto) {
+  public ResponseEntity<AccountDto> signUp(@Valid @RequestBody CreateAccountRequestDto dto) {
     Account account = service.save(dto);
     log.info("Account " + account + " saved");
     return ResponseEntity.ok(AccountDto.of(account));
   }
 
   @RequestMapping(value = "sign/in", method = RequestMethod.POST)
-  public ResponseEntity<AuthResponseDto> signIn(@RequestBody AuthRequestDto request) {
+  public ResponseEntity<AuthResponseDto> signIn(@Valid @RequestBody AuthRequestDto request) {
     try {
       log.info("Try auth: " + request.toString());
 
