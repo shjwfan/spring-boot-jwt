@@ -1,6 +1,5 @@
 package org.nocontrib.account;
 
-import java.util.Date;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.nocontrib.auth.CreateAccountRequestDto;
@@ -49,33 +48,6 @@ public class AccountServiceImpl implements AccountService {
   public Account getByUsername(String username) {
     return accountRepository.findByUsername(username)
         .orElseThrow(() -> new NotFoundException(String.format("%s was not found", username)));
-  }
-
-  @Override
-  @Transactional
-  public void updateByUsername(String username, Account account) {
-    Account old = getByUsername(username);
-    if (old != null && account != null) {
-      if (account.getUsername() != null && !old.getUsername().equals(account.getUsername())) {
-        old.setUsername(account.getUsername());
-      }
-
-      if (account.getPassword() != null) {
-        String encoded = encoder.encode(account.getPassword());
-        if (!old.getPassword().equals(encoded)) {
-          old.setPassword(encoded);
-        }
-      }
-
-      if (account.getName() != null && !old.getName().equals(account.getName())) {
-        old.setName(account.getName());
-      }
-
-      if (account.getEmail() != null && !old.getEmail().equals(account.getEmail())) {
-        old.setEmail(account.getEmail());
-      }
-      old.setCreated(new Date());
-    }
   }
 
   @Override

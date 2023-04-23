@@ -12,8 +12,6 @@ public interface AccountService {
 
   Account save(CreateAccountRequestDto dto);
 
-  void updateByUsername(String username, Account account);
-
   void deleteByUsername(String username);
 
   List<Role> getRolesByUsername(String username);

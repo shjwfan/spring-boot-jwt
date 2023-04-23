@@ -36,12 +36,6 @@ public class AccountRestController {
     return ResponseEntity.ok(dtos);
   }
 
-  @RequestMapping(value = "/", method = RequestMethod.PUT)
-  public void update(Authentication auth, @RequestBody Account account) {
-    String username = auth.getName();
-    service.updateByUsername(username, account);
-  }
-
   @RequestMapping(value = "/", method = RequestMethod.DELETE)
   public void delete(Authentication auth) {
     String username = auth.getName();
